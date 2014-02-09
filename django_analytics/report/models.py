@@ -37,7 +37,7 @@ class Source(models.Model):
         verbose_name_plural = _('Sources')
 
     name = models.CharField(max_length=128)
-    code = models.CharField(max_length=28)
+    code = models.IntegerField(unique=True)
 
     def __unicode__(self):
         return self.name
@@ -61,3 +61,12 @@ class Indicator(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def source(self):
+    	# Override this to get the data source
+    	return product.product_code
+
+   	def get_value(self, start_date, end_date):
+   		processor = IndicatorProcessor.factory("Sum")
+   		return processor.process(start_date, end_date, self)
+

@@ -7,6 +7,8 @@ This is more of a automation and design-related application, so that data collec
 
 ###Assumptions
 * Different Django apps for different products, the SQL relies on this.
+* The analytics tables assume that the name begins with `[product]_[indicator_name]`. Later on this will not be needed when we will have pluggable data processors
+* Also it needs the columns in those tables to be according to the ones in Indicator model. Again, this won't be needed when there will be internal data processors working 
 
 ###Targets for v0.1
 In this I don't plan to integrate the data sources, i shall assume that the data sources exists and plan to have a concrete dependency on it. Removing this dependency shall be dealt later on.
